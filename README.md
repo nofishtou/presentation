@@ -1,6 +1,6 @@
 ## Link
-https://nofishtou.github.io/presentation/reveal.js/index.html
+https://nofishtou.github.io/presentation/index.html
 
 ## Text
-https://nofishtou.github.io/presentation/reveal.js/text.md
+https://nofishtou.github.io/presentation/text.md
 
