@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Async JS</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Async Javascript</h1>
+				</section>
+				<section>
+					<img src="img/learnjs.jpg" width="500" height="500" alt="learn js">
+				</section>
+				<section>
+					<h2>JavaScript</h2>
+					<ul>
+						<li>The JavaScript engine</li>
+						<li>The JavaScript Run-time Enviroment</li>
+					</ul>
+				</section>
+				<section>
+					<img src="img/compiler.png"  alt="compiler">
+				</section>
+				<section>
+					<img src="img/browsersengines.png"  alt="browsers engines">
+				</section>
+				<section>
+					<img src="img/eventloop.png" width="500" height="500" alt="event loop">
+				</section>
+				<section>
+					<h3>Call Stack</h3>
+					<p>The JS engine executes our code, processing line by line and to do this it needs a call stack to keep track of the code that is executed in the specified order. Stack is a data structure that takes blocks of code and executes them in "Last In First Out" style.</p>
+				</section>
+				<section>
+					<h3>Queue</h3>
+					<p>Queue is a list of tasks to be processed. Each task is a function that will process this task when called.</p>
+				</section>
+				<section>					
+					<h3>Heap</h3>
+					<p>A heap is just a name for marking a large unstructured memory area where data objects are located.</p>
+				</section>
+				<section>
+					<h3>Callback hell</h3>
+					<img src="img/callbackhell.jpg" alt="callback hell">
+				</section>
+				<section>
+					<h3>Promise</h3>
+<p><pre><code>
+	fetch(`https://api.chucknorris.io/jokes/categories`)
+	.then((res) => res.json())
+	.then((data) => console.log(data))
+</code></pre></p>
+				</section>
+				<section>
+					<h3>Promise method`s</h3>
+					<ol>
+						<li>Promise.All()</li>
+						<li>Promise.AllSettled()</li>
+						<li>Promise.Race()</li>
+						<li>Promise.Any()</li>
+					</ol>
+				</section>
+				<section>
+					<h3>Promise.All()</h3>
+<p><pre><code>
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+	setTimeout(() => resolve('done'), 100);
+}); 
+
+Promise.all([promise1, promise2, promise3]).then(values => { 
+	console.log(values); 
+});
+</code></pre></p>
+				</section>
+				<section>
+					<h3>Promise.Race()</h3>
+<p><pre><code>
+	const promise1 = new Promise((resolve, reject) => {
+		setTimeout(() => resolve('done'), 300);
+	}); 
+	const promise2 = new Promise((resolve, reject) => {
+		setTimeout(() => reject('error'), 200);
+	}); 
+	const promise3 = new Promise((resolve, reject) => {
+		setTimeout(() => resolve('done'), 100);
+	}); 
+	
+	Promise.race([promise1, promise2, promise3]).then(values => { 
+		console.log(values); 
+	});
+	</code></pre></p>
+				</section>
+				<section>
+					<h3>Async/await</h3>
+<p><pre><code>
+async	function getCategories() {
+	let response = await fetch(`https://api.chucknorris.io/jokes/categories`);
+	let categories = await response.json();
+	console.log(categories)
+}
+</code></pre></p>
+				</section>
+				<section>
+					<h2>Thank you! C:</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
